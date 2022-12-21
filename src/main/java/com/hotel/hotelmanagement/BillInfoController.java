@@ -90,7 +90,7 @@ public class BillInfoController implements Initializable {
         }
     }
 
-    public void handlePrintAction(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void handlePrintAction(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
         String id = "";
         String insertBills = "INSERT INTO bills(reservationID, billDate, billAmount) VALUES (?, ?, ?)";
         String updateRoom = "UPDATE rooms SET status=\"Not Booked\" WHERE roomNumber=?";
@@ -139,7 +139,7 @@ public class BillInfoController implements Initializable {
         createBill(id);
     }
 
-    private void createBill(String id) throws IOException {
+    private void createBill(String id) throws IOException, InterruptedException {
         String billID = "";
         String customerName = "";
         String customerIDNumber = "";
@@ -151,7 +151,7 @@ public class BillInfoController implements Initializable {
         String checkOut = "";
         String totalDay = "";
         String totalPrice = "";
-        String path = "C:\\Users\\Mr.Cuong\\IdeaProjects\\HotelManagement\\res\\";
+        String path = "/home/rupkotha/IdeaProjects/hotel-management-system-r/src/main/java/Invoice/";
         String billQuery = "SELECT b.billID, c.customerIDNumber, c.customerName, c.customerPhoneNo, r.roomNumber, r.roomType, r.price, res.checkInDate, res.checkOutDate, (r.price * DATEDIFF(res.checkOutDate, res.checkInDate)) AS totalPrice, DATEDIFF(res.checkOutDate, res.checkInDate) AS totalDay FROM bills b\n" +
                 "INNER JOIN reservations res ON b.reservationID = res.reservationID\n" +
                 "INNER JOIN rooms r ON r.roomNumber = res.roomNumber\n" +
@@ -201,7 +201,8 @@ public class BillInfoController implements Initializable {
 
         File file = new File(path + "bill" + id + ".pdf");
         if (file.toString().endsWith(".pdf"))
-            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+            //Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+            Runtime.getRuntime().exec("xdg-open "+file);
         else {
             Desktop desktop = Desktop.getDesktop();
             desktop.open(file);
