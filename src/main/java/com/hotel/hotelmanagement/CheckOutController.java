@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CheckOutController implements Initializable {
@@ -159,7 +160,7 @@ public class CheckOutController implements Initializable {
                 BillInfoController.setSelectedReservationID(selectedReservation.getResID());
                 BillInfoController.setSelectedReservation(selectedReservation);
                 Stage add = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("billinfo.fxml"));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("billinfo.fxml")));
                 Scene scene = new Scene(root);
                 add.setScene(scene);
                 add.show();

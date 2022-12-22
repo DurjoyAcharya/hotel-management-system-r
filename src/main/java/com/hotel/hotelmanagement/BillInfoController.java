@@ -4,6 +4,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.javafx.menu.MenuItemBase;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,8 +12,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,7 +32,8 @@ import static com.hotel.hotelmanagement.RoomController.roomList;
 import static com.hotel.hotelmanagement.RoomController.rooms;
 
 public class BillInfoController implements Initializable {
-
+    public JFrame frame;
+    public JOptionPane display;
     public static int selectedResID;
 
     public static Reservation selectedReservation;
@@ -137,6 +143,7 @@ public class BillInfoController implements Initializable {
         }
         System.out.println(id);
         createBill(id);
+
     }
 
     private void createBill(String id) throws IOException, InterruptedException {
@@ -193,19 +200,30 @@ public class BillInfoController implements Initializable {
             table.addCell("Number of Days Stay: " + totalDay);
             table.addCell("Total Amount Paid: " + totalPrice);
             doc.add(table);
+            //Dummy Section
+//            System.out.println(billID);
+//            System.out.println(customerName);
+//            System.out.println(customerPhoneNo);
+//            System.out.println(customerIDNumber);
+//            System.out.println(checkIn);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         doc.close();
 
-        File file = new File(path + "bill" + id + ".pdf");
-        if (file.toString().endsWith(".pdf"))
-            //Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            Runtime.getRuntime().exec("xdg-open "+file);
-        else {
-            Desktop desktop = Desktop.getDesktop();
-            desktop.open(file);
-        }
+//        File file = new File(path + "bill" + id + ".pdf");
+//        if (file.toString().endsWith(".pdf"))
+//           Runtime.getRuntime().exec("xdg-open "+file);
+//        else {
+//            Desktop desktop = Desktop.getDesktop();
+//            desktop.open(file);
+//        }
+        new TextAreaOutputStreamTest(billID,customerName,customerPhoneNo,
+                customerIDNumber,checkIn,checkOut)
+                .createAndShowGui(billID,customerName,customerPhoneNo,
+                        customerIDNumber,checkIn,checkOut);
     }
+
+
 }

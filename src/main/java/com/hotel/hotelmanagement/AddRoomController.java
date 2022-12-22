@@ -15,31 +15,22 @@ import static com.hotel.hotelmanagement.RoomController.roomList;
 import static com.hotel.hotelmanagement.RoomController.rooms;
 
 public class AddRoomController implements Initializable {
-
     @FXML
     private Button add;
-
     @FXML
     private TextField number;
-
     @FXML
     private TextField price;
-
     @FXML
     private TextField type;
-
     private Connection connection;
-
     private DBConnection dbConnection;
-
     private PreparedStatement pst;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dbConnection = new DBConnection();
         connection = dbConnection.getConnection();
     }
-
     public void handleAddAction(javafx.event.ActionEvent actionEvent) {
         String query = "INSERT INTO rooms (roomNumber, roomType, price) VALUES (?,?,?)";
         try {

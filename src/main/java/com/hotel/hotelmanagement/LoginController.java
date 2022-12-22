@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -51,7 +52,7 @@ public class LoginController implements Initializable {
     public void handleSignupButton(javafx.event.ActionEvent actionEvent) throws IOException {
         login.getScene().getWindow().hide();
         Stage signup = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("signup.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("signup.fxml")));
         Scene scene = new Scene(root);
         signup.setScene(scene);
         signup.show();

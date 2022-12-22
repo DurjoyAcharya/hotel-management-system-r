@@ -124,11 +124,11 @@ public class BillController implements Initializable {
     public void clickBill(MouseEvent event) throws IOException {
         if (event.getClickCount() == 2) {
             if (billTable.getSelectionModel().getSelectedItem() != null) {
-                String path = "C:\\Users\\Mr.Cuong\\IdeaProjects\\HotelManagement\\res\\";
+                String path = "/home/rupkotha/IdeaProjects/hotel-management-system-r/src/main/java/Invoice/";
                 Bill selectedBill = billTable.getSelectionModel().getSelectedItem();
                 File file = new File(path + "bill" + selectedBill.getBillID() + ".pdf");
                 if (file.toString().endsWith(".pdf"))
-                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                    Runtime.getRuntime().exec("xdg-open " + file);
                 else {
                     Desktop desktop = Desktop.getDesktop();
                     desktop.open(file);

@@ -32,7 +32,7 @@ public class TextAreaOutputStream extends OutputStream {
                 }
             });
             sb.setLength(0);
-            sb.append(title + "> ");
+            sb.append(title + " ");
             return;
         }
 
