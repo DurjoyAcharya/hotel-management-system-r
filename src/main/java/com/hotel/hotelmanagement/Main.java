@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Objects;
-
-
 public class Main extends Application {
     @Override
     public void start(Stage stage) {
@@ -21,7 +19,6 @@ public class Main extends Application {
             exception.printStackTrace();
         }
     }
-
     public static void main(String[] args) {
         launch();
     }

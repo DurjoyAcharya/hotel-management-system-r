@@ -4,15 +4,15 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class TextAreaOutputStream extends OutputStream {
+public class VirtualTerminal extends OutputStream {
     private final JTextArea textArea;
     private final StringBuilder sb = new StringBuilder();
     private String title;
 
-    public TextAreaOutputStream(final JTextArea textArea, String title) {
+    public VirtualTerminal(final JTextArea textArea, String title) {
         this.textArea = textArea;
         this.title = title;
-        sb.append(title + "> ");
+        sb.append(title + "");
     }
     @Override
     public void close() {
